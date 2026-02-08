@@ -59,7 +59,7 @@ public class Colors {
             } else if (nums[mid] == 1) {
                 mid++;
             } else {
-                swap(nums, low, high);
+                swap(nums, mid, high);
                 high--;
             }
         }
