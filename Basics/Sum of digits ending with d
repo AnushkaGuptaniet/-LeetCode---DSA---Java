@@ -1,0 +1,54 @@
+import java.util.Scanner;
+public class WhileLoop {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("d = ");
+        int d = sc.nextInt();
+        System.out.println(whileLoop(d));
+
+    }
+    // Approach 1 : Brute Force
+//    public static int whileLoop(int d){
+//        int sum = 0;
+//        int count = 0;
+//        int number = 1;
+//        while(number < 50){
+//            if(number % 10 == d){
+//                sum += number;
+//            }
+//            number++;
+//        }
+//        return sum;
+//    }
+    // TC: O(1), SC:O(1)
+
+    // Approach 2 : Better
+//    public static int whileLoop(int d){
+//        int sum = 0;
+//        int current;
+//        if(d == 0){
+//            current = 10;
+//        }else{
+//            current = d;
+//        }
+//        for(int i = 1; i <= 50; i++){
+//            sum += current;
+//            current += 10;
+//        }
+//        return sum;
+//    }
+    // TC:O(1), SC:O(1)
+
+    // Approach 3: Mathematical Approach
+    public static int whileLoop(int d){
+        int first = d;
+        if(d == 0){
+            first = 10;
+        }else{
+            first = d;
+        }
+        int last = first + 49 * 10;
+        return (50 * (first + last)) / 2;
+    }
+    // TC : O(1), SC: O(1)
+}
