@@ -33,7 +33,7 @@ public class Prob1752 {
 //    }
 //}
     //TC:- O(n^2), SC:- O(n)
-
+ 
     public static boolean check(int[] nums, int n) {               // optimal - single traversal
         int count = 0;
         for (int i = 0; i < n; i++) {
