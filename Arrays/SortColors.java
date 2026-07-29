@@ -54,7 +54,6 @@ public class SortColor {
                 int temp = nums[mid];
                 nums[mid] = nums[high];
                 nums[high] = temp;
-                mid++;
                 high--;
             }
         }
