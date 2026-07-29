@@ -6,30 +6,28 @@ class Node{
         this.next = null;
     }
 }
-public class InsertionAtHeadLL {
-    public static void main(String[] args){
-        Node a = new Node(1);
-        Node b = new Node(2);
-        Node c = new Node(3);
-        a.next = b;
-        b.next = c;
-        Node head = a;
-        int data = 7;
-        head = insertAtHead(head,data);
-        displayList(head);
-    }
-    public static Node insertAtHead(Node head, int data){
-        Node newNode = new Node(data);
+public class InsertHead {
+    public static Node insertAtHead(Node head, int X){
+        Node newNode = new Node(X);
         newNode.next = head;
         head = newNode;
         return head;
     }
-    public static void displayList(Node head){
-        Node curr = head;
-        while(curr != null){
-            System.out.print(curr.data + " ");
-            curr = curr.next;
+
+    public static void main(String[] args) {
+        Node head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+        int X = 7;
+        head = insertAtHead(head, X);
+        printHead(head);
+    }
+    public static void printHead(Node head){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data + " ");
+            temp = temp.next;
         }
     }
 }
-// TC: O(1), SC: O(1)
+// TC: O(1), sC:O(1)
