@@ -1,13 +1,14 @@
 import java.util.Scanner;
-public class Solutionn {
+public class InputOutput {
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        printNumber(input);
+        Scanner sc = new Scanner(System.in);
+        System.out.print("n = ");
+        int n = sc.nextInt();
+        printNumber(n);
     }
-    public static void printNumber(Scanner input){
-        System.out.print("Enter num: ");
-        int num = input.nextInt();
-        System.out.println(num);
+    public static void printNumber(int n){
+        System.out.print("n = " + n);
     }
 }
-// TC: O(1), SC:O(1)
+
+// TC: O(1) , SC: O(1)
