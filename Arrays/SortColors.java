@@ -1,75 +1,63 @@
-// PROBLEM 75 : SORT COLORS (DUTCH NATIONAL FLAG ALGORITHM)
-
-
-// Approach 1 : Brute force approach
-import java.util.Arrays;
-public class Colors {
-
+public class SortColor {
     public static void main(String[] args) {
-        int[] nums = {2,0, 2, 1, 1, 0};
-        int n = nums.length;
-        System.out.println(Arrays.toString(sortColors(nums,n)));
+        int[] nums = {2,0,2,1,1,0};
+        sortColor(nums);
+        for(int i = 0; i < nums.length; i++){
+            System.out.print(nums[i] + " ");
+        }
     }
+    // brute force
+   public static void sortColor(int[] nums){
+       int zero = 0;
+       int one = 0;
+       int two = 0;
+       for(int i = 0; i < nums.length; i++){
+           if(nums[i] == 0)
+               zero++;
+           else if(nums[i] == 1)
+               one++;
+           else
+               two++;
+       }
+       int index = 0;
+       for(int i = 0; i < zero; i++){
+           nums[index] = 0;
+           index++;
+       }
+       for(int i = 0; i < one; i++){
+           nums[index] = 1;
+           index++;
+       }
+       for(int i = 0; i < two; i++){
+           nums[index] = 2;
+           index++;
+       }
+   }
+    
+    // TC: O(n), SC: O(1)
 
-    static int[] sortColors(int[] nums, int n){
-        int c0 = 0, c1 = 0, c2 = 0;
-        for (int i = 0; i < n; i++){
-            if (nums[i] == 0){
-                c0++;
-            } else if(nums[i] == 1){
-                c1++;
-            } else{
-                c2++;
-            }
-        }
-
-        int index = 0;
-        for(int i = 0; i < c0; i++){
-            nums[index++] = 0;
-        }
-        for(int i = 0; i < c1; i++){
-            nums[index++] = 1;
-        }
-        for(int i = 0; i < c2; i++){
-            nums[index++] = 2;
-        }
-        return nums;
-    }
-}
-// TC : O(n) but multitple passes , SC : O(n)
-
-
-// Approach 2: Three Pointers (Optimized)
-import java.util.Arrays;
-public class Colors {
-
-    public static void main(String[] args) {
-        int[] nums = {2, 0, 2, 1, 1, 0};
-        int n = nums.length;
-        System.out.println(Arrays.toString(sortColors(nums, n)));
-    }
-
-    static int[] sortColors(int[] nums, int n) {
-        int low = 0, mid = 0, high = n - 1;
-        while (mid <= high) {
-            if (nums[mid] == 0) {
-                swap(nums, low, mid);
-                mid++;
+    // optimal (3 pointers) (dutch national flag algo)
+    public static void sortColor(int[] nums){
+        int low = 0;
+        int mid = 0;
+        int high = nums.length - 1;
+        while(mid<=high){
+            if(nums[mid] == 0){
+                int temp = nums[low];
+                nums[low] = nums[mid];
+                nums[mid] = temp;
                 low++;
-            } else if (nums[mid] == 1) {
                 mid++;
-            } else {
-                swap(nums, mid, high);
+            }else if(nums[mid] == 1){
+                mid++;
+            }else{
+                int temp = nums[mid];
+                nums[mid] = nums[high];
+                nums[high] = temp;
+                mid++;
                 high--;
             }
         }
-        return nums;
     }
-
-    static void swap(int[] nums, int low, int high){
-        int temp = nums[low];
-        nums[low] = nums[high];
-        nums[high] = temp;
-    }
+    // TC: O(n), SC: O(1)
 }
-// TC : O(n) single pass , SC : O(n)
