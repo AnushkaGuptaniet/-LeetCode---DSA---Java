@@ -5,29 +5,27 @@ public class LargestElement {
         System.out.print("Enter size of array: ");
         int n = sc.nextInt();
         int[] nums = new int[n];
+        System.out.print("Enter elements of array: ");
         for(int i = 0; i < n; i++){
             nums[i] = sc.nextInt();
         }
-        int ans = largestElement(nums, n);
-        System.out.println(ans);
+        System.out.print(largestElement(nums));
     }
-    // approach 1 : brute force(Sorting)
-    public static int largestElement(int[] nums, int n){
-        Arrays.sort(nums);
-        return nums[nums.length - 1];
-    }
-    
-    // TC: O(n log n), SC:O(log n)
-    
-    // approach 2: optimal
-   public static int largestElement(int[] nums, int n){
-       int max = 0;
-       for(int i = 0; i < n; i++){
-           if(nums[i] > max){
-               max = nums[i];
-           }
-       }
-       return max;
+    // Brute Force
+   public static int largestElement(int[] nums){
+       Arrays.sort(nums);
+       return nums[nums.length - 1];
    }
+    // TC: O(n log n), SC : O(n log n)
+
+    public static int largestElement(int[] nums){
+        int max = nums[0];
+        for(int i = 1; i < nums.length; i++){
+            if(nums[i] > max){
+                max = nums[i];
+            }
+        }
+        return max;
+    }
+     // TC : O(n) , SC: O(1)
 }
-// TC:O(n), SC:O(1)
