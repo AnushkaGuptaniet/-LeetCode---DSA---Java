@@ -1,37 +1,48 @@
-class Node{
-    int data;
-    Node next;
-    Node(int data){
-        this.data = data;
-        this.next = null;
-    }
-}
-public class Problem237 {
+import java.util.Scanner;
+//class Node{
+//    int data;
+//    Node next;
+//    Node(int data){
+//        this.data = data;
+//        this.next = null;
+//    }
+//}
+public class DeleteNode {
     public static void main(String[] args) {
-        Node a = new Node(4);
-        Node b = new Node(5);
-        Node c = new Node(1);
-        Node d = new Node(9);
-        a.next = b;
-        b.next = c;
-        c.next = d;
-        Node head = a;
-        Node node = b;
-        displayList(deleteNode(node, head));
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter no of nodes: ");
+        int n = sc.nextInt();
+        System.out.print("Enter elements: ");
+        Node head = createList(n, sc);
+        System.out.print("Enter node u want to delete: ");
+        Node node = new Node(sc.nextInt());
+        deleteNode(node);
+        System.out.print("Linked List: ");
+        printList(head);
+
     }
-    public static Node deleteNode(Node node, Node head){
-        if(head == null){
+    public static Node createList(int n, Scanner sc){
+        if(n == 0)
             return null;
+        Node head = new Node(sc.nextInt());
+        Node temp = head;
+        for(int i = 1; i < n; i++){
+            temp.next = new Node(sc.nextInt());
+            temp = temp.next;
         }
-        head = head.next;
         return head;
     }
-    public static void displayList(Node head){
-        Node curr = head;
-        while(curr != null){
-            System.out.print(curr.data + " ");
-            curr = curr.next;
+    public static void deleteNode(Node node){
+        node.data = node.next.data;
+        node.next = node.next.next;
+    }
+    public static void printList(Node head) {
+
+        Node temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.data + " ");
+            temp = temp.next;
         }
     }
 }
-// TC:O(1), SC:O(1)
