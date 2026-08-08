@@ -1,0 +1,70 @@
+import java.util.Scanner;
+class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+    TreeNode(int val) {
+        this.val = val;
+        this.left = null;
+        this.right = null;
+    }
+}
+public class Main {
+    public static TreeNode sortedListToBST(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+        if (head.next == null) {
+            return new TreeNode(head.val);
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        ListNode prev = null;
+        while (fast != null && fast.next != null) {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        prev.next = null;
+        TreeNode root = new TreeNode(slow.val);
+        root.left = sortedListToBST(head);
+        root.right = sortedListToBST(slow.next);
+        return root;
+    }
+    public static void inorder(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        inorder(root.left);
+        System.out.print(root.val + " ");
+        inorder(root.right);
+    }
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter number of nodes: ");
+        int n = sc.nextInt();
+        if (n == 0) {
+            System.out.println("Tree is empty");
+            return;
+        }
+        System.out.println("Enter sorted elements:");
+        ListNode head = new ListNode(sc.nextInt());
+        ListNode temp = head;
+        for (int i = 1; i < n; i++) {
+            temp.next = new ListNode(sc.nextInt());
+            temp = temp.next;
+        }
+        TreeNode root = sortedListToBST(head);
+        System.out.println("Inorder traversal of BST:");
+        inorder(root);
+        sc.close();
+    }
+}
