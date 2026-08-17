@@ -2,7 +2,6 @@ import java.util.HashSet;
 
 class Solution {
     HashSet<Integer> set = new HashSet<>();
-
     public boolean findTarget(TreeNode root, int k) {
         if (root == null) return false;
 
