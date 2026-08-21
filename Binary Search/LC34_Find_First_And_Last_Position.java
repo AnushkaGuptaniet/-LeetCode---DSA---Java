@@ -1,5 +1,4 @@
 class Solution {
-    
     public int[] searchRange(int[] nums, int target){
         int st = 0, end = nums.length - 1; 
         int first = firstOccurence(nums,st,end, target);
