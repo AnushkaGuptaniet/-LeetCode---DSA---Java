@@ -1,0 +1,70 @@
+//Brute force approach 
+import java.util.*;
+public class Solution {
+    public static List<List<Integer>> countFrequencies(int[] nums) {
+        List<List<Integer>> ans = new ArrayList<>();
+        for (int i = 0; i < nums.length; i++) {
+            boolean alreadyProcessed = false;
+            for (int j = 0; j < i; j++) {
+                if (nums[j] == nums[i]) {
+                    alreadyProcessed = true;
+                    break;
+                }
+            }
+            if (alreadyProcessed) continue;
+            int count = 0;
+            for (int j = 0; j < nums.length; j++) {
+                if (nums[j] == nums[i]) {
+                    count++;
+                }
+            }
+            ans.add(Arrays.asList(nums[i], count));
+        }
+        return ans;
+    }
+}
+// TC : O(N^2), SC : O(1)
+
+
+
+// Better Approach (Sorting)
+import java.util.*;
+public class Solution {
+    public static List<List<Integer>> countFrequencies(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<>();
+        int count = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] == nums[i - 1]) {
+                count++;
+            } else {
+                ans.add(Arrays.asList(nums[i - 1], count));
+                count = 1;
+            }
+        }
+        ans.add(Arrays.asList(nums[nums.length - 1], count));
+        return ans;
+    }
+}
+// TC : O(N), SC : O(1)
+
+//  Optimal Approach (Hashing/HashMap)
+import java.util.*;
+public class Solution {
+    public static List<List<Integer>> countFrequencies(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (map.containsKey(nums[i])) {
+                map.put(nums[i], map.get(nums[i]) + 1);
+            } else {
+                map.put(nums[i], 1);
+            }
+        }
+        List<List<Integer>> ans = new ArrayList<>();
+        for (Integer key : map.keySet()) {
+            ans.add(Arrays.asList(key, map.get(key)));
+        }
+        return ans;
+    }
+}
+// TC: O(N), SC : O(N)
